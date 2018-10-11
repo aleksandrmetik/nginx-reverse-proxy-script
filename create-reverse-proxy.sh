@@ -43,7 +43,7 @@ WEB_ROOT_HTML="/var/www/$DOMAIN_UNDERSCORE/html"
 
 # Check: if all argument has been filed?
 if [ "$#" -ne 4 ]; then
-    echo "You must enter exactly 3 command line arguments"
+    echo "You must enter exactly 4 command line arguments"
 fi
 
 # Check: if domain has been filed. Is domain  correct?
@@ -141,7 +141,7 @@ EOT
 	# Create web root dir
 	sudo mkdir $WEB_ROOT 
 	sudo mkdir $WEB_ROOT_HTML 
-	sudo chown nginx:nginx -R $WEB_ROOT
+	sudo chown www-data:www-data -R $WEB_ROOT
 	sudo chmod 600 $NGINX_CONFIG
 
 	# Enable site
@@ -190,7 +190,7 @@ sudo /etc/init.d/nginx reload
 
 # Put the index.html file to web dir
 sudo cp $TEMPLATE_DIR/index.html.template $WEB_ROOT_HTML/index.html
-sudo chown nginx:nginx $WEB_ROOT_HTML/index.html
+sudo chown www-data:www-data $WEB_ROOT_HTML/index.html
 
 echo "Reverse proxy has been created for $DOMAIN"
 }
