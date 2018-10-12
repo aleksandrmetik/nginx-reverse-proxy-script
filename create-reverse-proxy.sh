@@ -109,12 +109,12 @@ echo "#################################"
 	cat <<EOT > $NGINX_CONFIG
 	server {
 	        listen 80;
+	        server_name ${DOMAIN};
 
 	        root ${WEB_ROOT_HTML};
 	        index index.html index.htm;
 		access_log  /var/log/nginx/${DOMAIN_UNDERSCORE}_access.log;
 		error_log  /var/log/nginx/${DOMAIN_UNDERSCORE}_error.log;
-	        server_name ${DOMAIN};
 
 		location = /robots.txt {
 			add_header Content-Type text/plain;
@@ -122,7 +122,6 @@ echo "#################################"
 		}
 
 	        location / {
-	        	try_files \$uri \$uri/ =404;
 			proxy_pass  ${PROXY_TARGET};
 			proxy_set_header   Host             \$host;
 			proxy_set_header   X-Real-IP        \$remote_addr;
