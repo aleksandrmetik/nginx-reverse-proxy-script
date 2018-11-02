@@ -108,11 +108,6 @@ echo "#################################"
 
 	cat <<EOT > $NGINX_CONFIG
 
-	upstream kub-backend-workers {
-		    		server 10.32.80.5;
-		    		server 10.32.80.179;
-		    		server 10.32.80.29;
-				}
 
 	server {
 	        listen 80;
