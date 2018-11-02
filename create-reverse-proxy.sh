@@ -121,6 +121,12 @@ echo "#################################"
 	       		return 200 "User-agent: *\nDisallow: /\n";
 		}
 
+		upstream kub-backend-workers {
+		    server 10.32.80.5;
+		    server 10.32.80.179;
+		    server 10.32.80.29;
+			}
+
 	        location / {
 			proxy_pass  ${PROXY_TARGET};
 			proxy_set_header   Host             \$host;
