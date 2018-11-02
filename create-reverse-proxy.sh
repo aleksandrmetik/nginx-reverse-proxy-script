@@ -109,10 +109,10 @@ echo "#################################"
 	cat <<EOT > $NGINX_CONFIG
 
 	upstream kub-backend-workers {
-		    server 10.32.80.5;
-		    server 10.32.80.179;
-		    server 10.32.80.29;
-			}
+		    		server 10.32.80.5;
+		    		server 10.32.80.179;
+		    		server 10.32.80.29;
+				}
 
 	server {
 	        listen 80;
@@ -129,7 +129,7 @@ echo "#################################"
 		}
 
 	        location / {
-			proxy_pass  ${PROXY_TARGET};
+			proxy_pass  http://${PROXY_TARGET};
 			proxy_set_header   Host             \$host;
 			proxy_set_header   X-Real-IP        \$remote_addr;
 			proxy_set_header   X-Forwarded-For  \$proxy_add_x_forwarded_for;
