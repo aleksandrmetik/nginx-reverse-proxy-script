@@ -107,6 +107,13 @@ echo "#################################"
 
 
 	cat <<EOT > $NGINX_CONFIG
+
+	upstream kub-backend-workers {
+		    server 10.32.80.5;
+		    server 10.32.80.179;
+		    server 10.32.80.29;
+			}
+
 	server {
 	        listen 80;
 	        server_name ${DOMAIN};
@@ -120,12 +127,6 @@ echo "#################################"
 			add_header Content-Type text/plain;
 	       		return 200 "User-agent: *\nDisallow: /\n";
 		}
-
-		upstream kub-backend-workers {
-		    server 10.32.80.5;
-		    server 10.32.80.179;
-		    server 10.32.80.29;
-			}
 
 	        location / {
 			proxy_pass  ${PROXY_TARGET};
