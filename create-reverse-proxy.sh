@@ -121,6 +121,16 @@ echo "#################################"
 	       		return 200 "User-agent: *\nDisallow: /\n";
 		}
 
+		location ~ /\.git {
+		deny all;
+		}
+
+		location ~ /\.(?!well-known).* {
+		deny all;
+		}
+
+
+
 	        location / {
 			proxy_pass  ${PROXY_TARGET};
 			proxy_set_header   Host             \$host;
